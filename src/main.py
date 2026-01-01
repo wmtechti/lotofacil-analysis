@@ -5,14 +5,23 @@ Executa todas as análises e gera os arquivos de saída.
 from __future__ import annotations
 
 import os
+import sys
 import json
 import numpy as np
+
+# Adiciona o diretório raiz ao path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.io_data import load_draws_csv
 from src.heatmap_analysis import compute_heatmap
 from src.spatial_metrics import draw_spatial_metrics
 from src.cooccurrence import cooccurrence_matrix, top_pairs
 from src.cluster_analysis import cluster_numbers_dbscan
+from src.visualizations import (
+    plot_heatmap_grid, plot_frequency_bars, plot_row_col_comparison,
+    plot_cooccurrence_network, plot_spatial_metrics_distribution,
+    create_summary_report
+)
 
 
 def ensure_out_dir():
@@ -93,10 +102,20 @@ def main():
     with open("out/summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
+    # 8. Gera visualizações
+    print("\n🎨 Gerando visualizações...")
+    plot_heatmap_grid(hm["heatmap_matrix"])
+    plot_frequency_bars(freq_by_number)
+    plot_row_col_comparison(hm["row_df"], hm["col_df"])
+    plot_cooccurrence_network(pairs_df, top_n=30)
+    plot_spatial_metrics_distribution(metrics_df)
+    create_summary_report(freq_by_number, pairs_df, metrics_df, len(df))
+
     print("\n✅ Análise concluída!")
     print(f"📁 Arquivos gerados em: out/")
     print(f"📊 Total de sorteios analisados: {len(df)}")
     print(f"🎯 Total de clusters identificados: {n_clusters}")
+    print(f"🎨 Visualizações: 5 gráficos + 1 relatório em texto")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ from __future__ import annotations
 import pandas as pd
 from typing import List, Tuple
 
-DEFAULT_BALL_COLS = [f"b{i}" for i in range(1, 16)]  # b1..b15
+DEFAULT_BALL_COLS = [f"Bola{i}" for i in range(1, 16)]  # Bola1..Bola15
 
 
 def load_draws_csv(path: str, ball_cols: List[str] | None = None) -> Tuple[pd.DataFrame, List[str]]:
@@ -17,7 +17,7 @@ def load_draws_csv(path: str, ball_cols: List[str] | None = None) -> Tuple[pd.Da
     Formato esperado:
     - CSV com cabeçalho
     - 15 colunas de bolas (números sorteados)
-    - Colunas padrão: b1, b2, ..., b15
+    - Colunas padrão: Bola1, Bola2, ..., Bola15 (ou b1, b2, ..., b15)
     - Pode conter outras colunas (concurso, data, etc.)
     
     Args:
@@ -33,11 +33,22 @@ def load_draws_csv(path: str, ball_cols: List[str] | None = None) -> Tuple[pd.Da
     df = pd.read_csv(path)
 
     if ball_cols is None:
-        # tenta detectar colunas b1..b15
+        # tenta detectar colunas Bola1..Bola15
         ball_cols = [c for c in DEFAULT_BALL_COLS if c in df.columns]
+        
+        # tenta formato alternativo b1..b15
         if len(ball_cols) != 15:
-            # fallback: últimas 15 colunas
-            ball_cols = list(df.columns[-15:])
+            alt_cols = [f"b{i}" for i in range(1, 16)]
+            ball_cols = [c for c in alt_cols if c in df.columns]
+        
+        # fallback: procura qualquer coluna que comece com "Bola" ou "bola"
+        if len(ball_cols) != 15:
+            ball_cols = [c for c in df.columns if c.lower().startswith('bola')]
+        
+        # último recurso: últimas 15 colunas numéricas
+        if len(ball_cols) != 15:
+            numeric_cols = df.select_dtypes(include=['number']).columns.tolist()
+            ball_cols = numeric_cols[-15:] if len(numeric_cols) >= 15 else list(df.columns[-15:])
 
     # garante int
     df[ball_cols] = df[ball_cols].astype(int)

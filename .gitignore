@@ -1,0 +1,45 @@
+# .gitignore para projeto Lotofácil
+
+# Arquivos de saída
+out/
+*.csv
+*.json
+
+# Ambientes virtuais Python
+.venv/
+venv/
+env/
+ENV/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Dados sensíveis (não versionar CSVs grandes)
+data/*.csv
+!data/lotofacil_sorteios.csv
+
+# Distribuição / empacotamento
+dist/
+build/
+*.egg-info/

@@ -1,5 +1,10 @@
 # 🎯 Análise Espacial da Lotofácil
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/wmtechti/lotofacil-analysis/releases/tag/v1.0.0)
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
+
 Projeto de análise estatística e espacial da Lotofácil usando o grid 5×5 do volante como domínio geoespacial abstrato.
 
 ## 📋 Sobre o Projeto
@@ -174,10 +179,16 @@ number,freq,row,col,cluster
 - **scikit-learn**: algoritmos de clustering
 - **matplotlib**: visualizações (opcional)
 - **seaborn**: visualizações estatísticas (opcional)
+- **networkx**: grafos de co-ocorrência
+- **tqdm**: barras de progresso
 
 ## 🤝 Contribuindo
 
 Este é um projeto de análise estatística. Contribuições são bem-vindas!
+
+## 📋 Changelog
+
+Veja [CHANGELOG.md](CHANGELOG.md) para histórico detalhado de mudanças.
 
 ## ⚠️ Aviso Legal
 

@@ -172,22 +172,44 @@ amplitude = max(combo) - min(combo)
 ```
 🏆 POSIÇÃO #1 - Soma 200
    Combinação: 01-02-05-07-08-10-13-14-16-18-19-20-22-24-25
-   Total de premiações: 430 (12.00%)
+   Total de premiações: 430
    
-   ✅ Exemplos de 13 PONTOS (10 vezes):
-      • Concurso 3500 (15/11/2025): [01-02-05-07-08-10-13-16-18-19-22-24-25]
-      • Concurso 3420 (22/08/2025): [02-05-07-08-10-13-14-16-18-20-22-24-25]
+   📊 Distribuição de Acertos:
+      15 pontos:   0 sorteios ( 0.00% do total |  0.00% das premiações)
+      14 pontos:   0 sorteios ( 0.00% do total |  0.00% das premiações)
+      13 pontos:  10 sorteios ( 0.28% do total |  2.33% das premiações)
+      12 pontos:  95 sorteios ( 2.66% do total | 22.09% das premiações)
+      11 pontos: 325 sorteios ( 9.09% do total | 75.58% das premiações)
    
-   ✅ Exemplos de 12 PONTOS (95 vezes):
-      • Concurso 3485 (25/10/2025): [01-02-05-07-10-13-14-16-18-20-22-25]
-      ...
+   ✅ Exemplos de 13 PONTOS:
+      • Concurso 3500 (15/11/2025): [01-02-05-07-08-10-13-16-18-19-22-24-25] - 13 acertos
+      • Concurso 3420 (22/08/2025): [02-05-07-08-10-13-14-16-18-20-22-24-25] - 13 acertos
+   
+   ✅ Exemplos de 12 PONTOS:
+      • Concurso 3485 (25/10/2025): [01-02-05-07-10-13-14-16-18-20-22-25] - 12 acertos
+      • Concurso 3471 (08/10/2025): [01-05-07-08-10-13-16-18-19-20-24-25] - 12 acertos
+      
+   ✅ Exemplos de 11 PONTOS:
+      • Concurso 3584 (30/12/2025): [01-02-05-07-10-13-14-16-19-22-25] - 11 acertos
+      • Concurso 3579 (23/12/2025): [02-05-07-08-10-13-16-18-20-24-25] - 11 acertos
 ```
 
-**Características**:
-- Mostra até **2 exemplos** de cada faixa (11, 12, 13 pontos)
-- Exemplos em **ordem cronológica inversa** (mais recentes primeiro)
-- Exibe **concurso, data e números exatos** que acertaram
-- Facilita validação de padrões de números premiados
+**Características principais**:
+- **Distribuição consolidada**: Mostra quantidade de sorteios em cada faixa (11-15 pontos)
+- **Dupla porcentagem**:
+  - **% do total**: Relativo aos 3.575 sorteios históricos
+  - **% das premiações**: Relativo ao total de premiações daquela combinação
+- **Exemplos detalhados**: Até 2 exemplos recentes por faixa mostrando:
+  - Concurso e data
+  - **Números específicos que acertaram** (entre colchetes)
+  - **Quantidade validada** de acertos
+- **Ordem cronológica inversa**: Sorteios mais recentes aparecem primeiro
+
+**Interpretação dos resultados**:
+- Números entre `[...]` são os **números da combinação que foram sorteados**
+- Permite validar se acertos são estatisticamente significativos
+- Identifica quais números têm maior "poder" de premiação
+- Facilita análise de padrões nos números acertados
 
 ## 📈 Visualizações
 
@@ -326,12 +348,23 @@ if qtd_acertos == 13 and len(exemplos_13) < 5:
 
 ## 🔄 Atualizações Recentes
 
-### Janeiro 2026
-- ✅ Adicionadas células 43 e 46 com detalhamento de números premiados
-- ✅ Implementada ordem cronológica inversa (sorteios recentes primeiro)
-- ✅ Expandida exibição para 11, 12, 13 pontos (antes só 13-15)
-- ✅ Adicionado formato com concurso + data + números acertados
-- ✅ Limitado a 2 exemplos por faixa para evitar output excessivo
+### Janeiro 2026 - Versão 2.0
+- ✅ **Distribuição consolidada de acertos**: Tabela mostrando quantidade de sorteios em cada faixa (11-15 pontos)
+- ✅ **Sistema de dupla porcentagem**:
+  - % do total de sorteios históricos (3.575)
+  - % do total de premiações da combinação
+- ✅ **Detalhamento de números acertados**: Mostra quais números específicos da combinação foram sorteados
+- ✅ **Validação de quantidade**: Cada exemplo exibe a quantidade validada de acertos
+- ✅ **Ordem cronológica inversa**: Sorteios recentes primeiro usando `reversed(sorteios_historicos)`
+- ✅ **Expansão de faixas**: Exibição de 11, 12, 13 pontos (antes só 13-15)
+- ✅ **Limitação de exemplos**: Máximo de 2 por faixa para evitar output excessivo
+- ✅ **Correção de sintaxe**: Resolvidos erros de print statements concatenados
+
+### Melhorias Implementadas
+- **Clareza visual**: Separação clara entre distribuição geral e exemplos específicos
+- **Rastreabilidade**: Cada exemplo pode ser verificado manualmente no histórico
+- **Insights**: Permite identificar padrões nos números que acertam com mais frequência
+- **Performance**: Busca otimizada usando `reversed()` para encontrar exemplos recentes rapidamente
 
 ### Próximas Melhorias Sugeridas
 - [ ] Exportar detalhamento completo para CSV

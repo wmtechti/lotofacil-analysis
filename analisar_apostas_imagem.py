@@ -63,7 +63,8 @@ def extrair_numeros_de_imagem(caminho_imagem):
                 except ValueError:
                     continue
             
-            # Se encontrou entre 15 e 20 números (tamanho válido de um jogo)
+            # Na Lotofácil, pode-se apostar de 15 a 20 números (desdobramento)
+            # Se encontrou entre 15 e 20 números, considera como um jogo válido
             if 15 <= len(numeros_validos) <= 20:
                 jogos.append(set(numeros_validos))
         

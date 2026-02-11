@@ -50,8 +50,9 @@ def main():
             numeros = [int(n) for n in numeros_str if n]
             
             # Validar
-            if len(numeros) != 15:
-                print(f"  ⚠️  Erro: Um jogo deve ter exatamente 15 números. Você digitou {len(numeros)}.")
+            # Na Lotofácil, pode-se apostar de 15 a 20 números
+            if not (15 <= len(numeros) <= 20):
+                print(f"  ⚠️  Erro: Um jogo deve ter entre 15 e 20 números. Você digitou {len(numeros)}.")
                 continue
             
             if not all(1 <= n <= 25 for n in numeros):

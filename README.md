@@ -163,6 +163,27 @@ number,freq,row,col,cluster
 - `cluster=-1`: número não pertence a nenhum cluster (ruído)
 - `cluster>=0`: ID do cluster
 
+## 🎲 Ferramentas de Análise de Apostas
+
+O projeto agora inclui ferramentas para analisar suas apostas:
+
+### 📱 Análise Rápida de Apostas
+
+- **`analisar_concurso_3610.py`**: Analise rapidamente seus jogos contra o resultado do concurso 3610
+- **`analisar_apostas_imagem.py`**: Extraia números de imagens usando OCR e analise contra qualquer concurso
+
+Veja o [Guia de Análise de Apostas](GUIA_ANALISE_APOSTAS.md) para instruções detalhadas.
+
+#### Exemplo de Uso Rápido:
+
+```bash
+# Análise rápida do concurso 3610
+python analisar_concurso_3610.py
+
+# Análise com extração de imagem
+python analisar_apostas_imagem.py minha_aposta.jpg 3610 "01,03,05,07,08,10,13,14,17,20,21,22,23,24,25"
+```
+
 ## 🎯 Próximos Passos
 
 - [ ] Gerador inteligente de apostas baseado em clusters
@@ -181,6 +202,8 @@ number,freq,row,col,cluster
 - **seaborn**: visualizações estatísticas (opcional)
 - **networkx**: grafos de co-ocorrência
 - **tqdm**: barras de progresso
+- **Pillow**: processamento de imagens (para análise de apostas)
+- **pytesseract**: OCR para extração de números de imagens (para análise de apostas)
 
 ## 🤝 Contribuindo
 

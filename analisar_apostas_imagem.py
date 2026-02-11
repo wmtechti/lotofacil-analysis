@@ -13,6 +13,8 @@ Exemplo:
 import sys
 import re
 from pathlib import Path
+from lotofacil_utils import determinar_nivel_premiacao
+
 try:
     from PIL import Image
     import pytesseract
@@ -61,11 +63,8 @@ def extrair_numeros_de_imagem(caminho_imagem):
                 except ValueError:
                     continue
             
-            # Se encontrou 15 números (tamanho padrão de um jogo), adicionar
-            if len(numeros_validos) == 15:
-                jogos.append(set(numeros_validos))
-            # Se encontrou entre 15 e 20 números, pode ser um jogo com mais números
-            elif 15 <= len(numeros_validos) <= 20:
+            # Se encontrou entre 15 e 20 números (tamanho válido de um jogo)
+            if 15 <= len(numeros_validos) <= 20:
                 jogos.append(set(numeros_validos))
         
         return jogos
@@ -153,27 +152,13 @@ def analisar_jogos(jogos, resultado_concurso, numero_concurso):
         acertos = resultado_concurso & jogo
         erros = jogo - resultado_concurso
         num_acertos = len(acertos)
-        
-        # Determinar premiação
-        premiacao = ""
-        if num_acertos == 15:
-            premiacao = "🎯 QUINZE PONTOS! (15 acertos)"
-        elif num_acertos == 14:
-            premiacao = "⭐ QUATORZE PONTOS! (14 acertos)"
-        elif num_acertos == 13:
-            premiacao = "✨ TREZE PONTOS! (13 acertos)"
-        elif num_acertos == 12:
-            premiacao = "🌟 DOZE PONTOS! (12 acertos)"
-        elif num_acertos == 11:
-            premiacao = "💫 ONZE PONTOS! (11 acertos)"
-        else:
-            premiacao = f"❌ Não premiado ({num_acertos} acertos)"
+        premiacao = determinar_nivel_premiacao(num_acertos)
         
         print(f"\n{'─' * 80}")
         print(f"JOGO {i}")
         print(f"{'─' * 80}")
         print(f"Números apostados: {', '.join(map(lambda x: f'{x:02d}', sorted(jogo)))}")
-        print(f"\nRESULTADO: {premiacao}")
+        print(f"\nRESULTADO: {premiacao} ({num_acertos} acertos)")
         print(f"\nAcertos ({num_acertos}): {', '.join(map(lambda x: f'{x:02d}', sorted(acertos)))}")
         if erros:
             print(f"Erros   ({len(erros)}): {', '.join(map(lambda x: f'{x:02d}', sorted(erros)))}")

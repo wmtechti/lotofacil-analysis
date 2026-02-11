@@ -4,6 +4,8 @@ Script rápido para analisar apostas do concurso 3610.
 Execute este script e digite seus jogos quando solicitado.
 """
 
+from lotofacil_utils import determinar_nivel_premiacao
+
 # Resultado do concurso 3610
 RESULTADO_3610 = {1, 3, 5, 7, 8, 10, 13, 14, 17, 20, 21, 22, 23, 24, 25}
 
@@ -12,20 +14,7 @@ def analisar_jogo(jogo, resultado):
     acertos = jogo & resultado
     erros = jogo - resultado
     num_acertos = len(acertos)
-    
-    # Determinar premiação
-    if num_acertos == 15:
-        nivel = "🎯 QUINZE PONTOS!"
-    elif num_acertos == 14:
-        nivel = "⭐ QUATORZE PONTOS!"
-    elif num_acertos == 13:
-        nivel = "✨ TREZE PONTOS!"
-    elif num_acertos == 12:
-        nivel = "🌟 DOZE PONTOS!"
-    elif num_acertos == 11:
-        nivel = "💫 ONZE PONTOS!"
-    else:
-        nivel = f"❌ Não premiado"
+    nivel = determinar_nivel_premiacao(num_acertos)
     
     return {
         'nivel': nivel,

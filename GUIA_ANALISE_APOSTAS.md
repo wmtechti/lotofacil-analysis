@@ -131,7 +131,7 @@ Se o OCR não conseguir extrair os números automaticamente, o script oferecerá
 
 Para cada jogo analisado, você verá:
 
-- **Números apostados**: Todos os 15 números do seu jogo
+- **Números apostados**: Todos os números do seu jogo (15 a 20 números)
 - **Resultado**: Nível de premiação e quantidade de acertos
 - **Acertou**: Números que coincidiram com o resultado
 - **Errou**: Números que você apostou mas não saíram
@@ -185,7 +185,7 @@ Digite seus jogos...
 
 ## ⚠️ Notas Importantes
 
-1. **Formato dos números**: Sempre use 15 números separados por vírgula
+1. **Formato dos números**: Use de 15 a 20 números separados por vírgula (desdobramento permitido)
 2. **Números válidos**: Apenas números de 1 a 25
 3. **Sem duplicatas**: Cada número pode aparecer apenas uma vez por jogo
 4. **OCR não é 100% preciso**: Sempre confira os números extraídos da imagem
